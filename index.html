@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modern Landing Page</title>
+  <meta name="description" content="A clean single-file landing page template." />
+  <style>
+    /* Simple CSS reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
+      --text:#e6eef8;
+    }
+    [data-theme="light"]{ --bg:#f6f8fb; --card:#ffffff; --muted:#55606b; --accent:#6b21a8; --glass: rgba(0,0,0,0.03); --text:#062333 }
+
+    html,body{height:100%}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg), #071226 120%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.5;
+      padding:24px;
+    }
+
+    .container{max-width:1100px;margin:0 auto}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    h1.logo-text{font-size:18px}
+
+    nav{display:flex;gap:14px}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a.primary{background:linear-gradient(90deg,var(--accent),#4f46e5);padding:8px 12px;border-radius:10px;color:white}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:36px}
+    .card{background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));padding:28px;border-radius:14px;box-shadow:0 8px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px);}
+    .eyebrow{color:var(--accent);font-weight:700;margin-bottom:8px}
+    h2{font-size:28px;margin-bottom:12px}
+    p.lead{color:var(--muted);margin-bottom:20px}
+    .cta{display:flex;gap:12px}
+    .btn{padding:10px 16px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#4f46e5);color:white}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+
+    /* Right side mock */
+    .mock{
+      height:360px;border-radius:12px;display:flex;flex-direction:column;gap:10px;padding:18px;justify-content:center;align-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));border:1px solid var(--glass)
+    }
+    .mock .screen{width:100%;height:260px;border-radius:8px;background:linear-gradient(180deg,#031027, #07213a);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
+    .feature{padding:18px;border-radius:12px;background:var(--card);border:1px solid var(--glass)}
+    .feature h3{margin-bottom:8px}
+    .feature p{color:var(--muted);font-size:14px}
+
+    /* Portfolio */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .tile{height:120px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;border:1px solid var(--glass)}
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+    textarea{min-height:100px}
+    .muted{color:var(--muted);font-size:13px}
+
+    footer{margin-top:40px;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:600px){
+      nav{display:none}
+      .features{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+
+    /* small helper */
+    .row{display:flex;gap:10px;align-items:center}
+    .pill{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03)}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">SB</div>
+        <div>
+          <div class="logo-text">Skybridge</div>
+          <div class="muted" style="font-size:12px">Design • Dev • Product</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#work">Work</a>
+        <a class="primary" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <div class="eyebrow">Launch faster</div>
+          <h2>Beautiful web experiences, made simple.</h2>
+          <p class="lead">A clean, responsive single-file landing page template you can copy and use instantly. Works well for freelancers, agencies, and side projects.</p>
+
+          <div class="row" style="margin-bottom:18px">
+            <div class="pill">Fast setup</div>
+            <div class="pill">Responsive</div>
+            <div class="pill">Customizable</div>
+          </div>
+
+          <div class="cta">
+            <button class="btn primary" id="downloadBtn">Download HTML</button>
+            <button class="btn ghost" id="previewBtn">Preview</button>
+          </div>
+
+          <div style="margin-top:18px;color:var(--muted);font-size:13px">No frameworks — just HTML, CSS and a little JS. Copy and paste to start customizing.</div>
+        </div>
+
+        <aside class="mock card" aria-hidden="true">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Live preview</div>
+          <div class="screen">Your product screenshot here</div>
+          <div class="row" style="margin-top:10px">
+            <div class="pill">v1.0</div>
+            <div class="pill">Static</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="features" class="features">
+        <div class="feature card">
+          <h3>Fast to deploy</h3>
+          <p>Small, dependency-free HTML file. Host anywhere: GitHub Pages, Netlify, Vercel, or any static host.</p>
+        </div>
+        <div class="feature card">
+          <h3>Responsive</h3>
+          <p>Works on phones, tablets, and desktop with a fluid layout that adapts to screen size.</p>
+        </div>
+        <div class="feature card">
+          <h3>Customizable</h3>
+          <p>Tweak colors, typography, and layout quickly. Comments in the code to guide your edits.</p>
+        </div>
+      </section>
+
+      <section id="work">
+        <h3 style="margin-bottom:12px">Recent work</h3>
+        <div class="grid">
+          <div class="tile">Project A</div>
+          <div class="tile">Project B</div>
+          <div class="tile">Project C</div>
+          <div class="tile">Project D</div>
+          <div class="tile">Project E</div>
+          <div class="tile">Project F</div>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:28px">
+        <h3 style="margin-bottom:8px">Get in touch</h3>
+        <div class="card">
+          <form id="contactForm">
+            <input type="text" id="name" placeholder="Your name" required />
+            <input type="email" id="email" placeholder="Your email" required />
+            <textarea id="message" placeholder="How can I help?" required></textarea>
+            <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+              <div class="muted">I'll reply within 48 hours</div>
+              <div style="display:flex;gap:8px">
+                <button type="submit" class="btn primary">Send</button>
+                <button type="button" class="btn ghost" id="clearBtn">Clear</button>
+              </div>
+            </div>
+          </form>
+          <div id="successMsg" style="display:none;margin-top:12px;color:var(--accent);font-weight:700">Thanks — message copied to clipboard (demo).</div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© <span id="year"></span> Skybridge — Built with ❤️</div>
+        <div class="muted">Made with this single-file template</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // small client JS: download, preview, contact form demo, and theme toggle.
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Prepare the file contents (this whole page). For demo we will fetch the current document's outerHTML.
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.addEventListener('click', ()=>{
+      const blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'index.html';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('previewBtn').addEventListener('click', ()=>{
+      const w = window.open();
+      w.document.write(document.documentElement.outerHTML);
+      w.document.close();
+    });
+
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const payload = `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`;
+      // Demo behaviour: copy to clipboard and show success (no server in this static demo)
+      try{
+        await navigator.clipboard.writeText(payload);
+        document.getElementById('successMsg').style.display = 'block';
+        setTimeout(()=>document.getElementById('successMsg').style.display='none', 4000);
+        form.reset();
+      }catch(err){
+        alert('Clipboard not available in this browser.');
+      }
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', ()=>{form.reset();});
+
+    // Optional: simple theme toggle with double-click on logo
+    const logo = document.querySelector('.logo');
+    logo.title = 'Double-click to toggle light theme';
+    logo.addEventListener('dblclick', ()=>{
+      const t = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', t === 'light' ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modern Landing Page</title>
+  <meta name="description" content="A clean single-file landing page template." />
+  <style>
+    /* Simple CSS reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
+      --text:#e6eef8;
+    }
+    [data-theme="light"]{ --bg:#f6f8fb; --card:#ffffff; --muted:#55606b; --accent:#6b21a8; --glass: rgba(0,0,0,0.03); --text:#062333 }
+
+    html,body{height:100%}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg), #071226 120%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.5;
+      padding:24px;
+    }
+
+    .container{max-width:1100px;margin:0 auto}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    h1.logo-text{font-size:18px}
+
+    nav{display:flex;gap:14px}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a.primary{background:linear-gradient(90deg,var(--accent),#4f46e5);padding:8px 12px;border-radius:10px;color:white}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:36px}
+    .card{background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));padding:28px;border-radius:14px;box-shadow:0 8px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px);}
+    .eyebrow{color:var(--accent);font-weight:700;margin-bottom:8px}
+    h2{font-size:28px;margin-bottom:12px}
+    p.lead{color:var(--muted);margin-bottom:20px}
+    .cta{display:flex;gap:12px}
+    .btn{padding:10px 16px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#4f46e5);color:white}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+
+    /* Right side mock */
+    .mock{
+      height:360px;border-radius:12px;display:flex;flex-direction:column;gap:10px;padding:18px;justify-content:center;align-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));border:1px solid var(--glass)
+    }
+    .mock .screen{width:100%;height:260px;border-radius:8px;background:linear-gradient(180deg,#031027, #07213a);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
+    .feature{padding:18px;border-radius:12px;background:var(--card);border:1px solid var(--glass)}
+    .feature h3{margin-bottom:8px}
+    .feature p{color:var(--muted);font-size:14px}
+
+    /* Portfolio */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .tile{height:120px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;border:1px solid var(--glass)}
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+    textarea{min-height:100px}
+    .muted{color:var(--muted);font-size:13px}
+
+    footer{margin-top:40px;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:600px){
+      nav{display:none}
+      .features{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+
+    /* small helper */
+    .row{display:flex;gap:10px;align-items:center}
+    .pill{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03)}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">SB</div>
+        <div>
+          <div class="logo-text">Skybridge</div>
+          <div class="muted" style="font-size:12px">Design • Dev • Product</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#work">Work</a>
+        <a class="primary" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <div class="eyebrow">Launch faster</div>
+          <h2>Beautiful web experiences, made simple.</h2>
+          <p class="lead">A clean, responsive single-file landing page template you can copy and use instantly. Works well for freelancers, agencies, and side projects.</p>
+
+          <div class="row" style="margin-bottom:18px">
+            <div class="pill">Fast setup</div>
+            <div class="pill">Responsive</div>
+            <div class="pill">Customizable</div>
+          </div>
+
+          <div class="cta">
+            <button class="btn primary" id="downloadBtn">Download HTML</button>
+            <button class="btn ghost" id="previewBtn">Preview</button>
+          </div>
+
+          <div style="margin-top:18px;color:var(--muted);font-size:13px">No frameworks — just HTML, CSS and a little JS. Copy and paste to start customizing.</div>
+        </div>
+
+        <aside class="mock card" aria-hidden="true">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Live preview</div>
+          <div class="screen">Your product screenshot here</div>
+          <div class="row" style="margin-top:10px">
+            <div class="pill">v1.0</div>
+            <div class="pill">Static</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="features" class="features">
+        <div class="feature card">
+          <h3>Fast to deploy</h3>
+          <p>Small, dependency-free HTML file. Host anywhere: GitHub Pages, Netlify, Vercel, or any static host.</p>
+        </div>
+        <div class="feature card">
+          <h3>Responsive</h3>
+          <p>Works on phones, tablets, and desktop with a fluid layout that adapts to screen size.</p>
+        </div>
+        <div class="feature card">
+          <h3>Customizable</h3>
+          <p>Tweak colors, typography, and layout quickly. Comments in the code to guide your edits.</p>
+        </div>
+      </section>
+
+      <section id="work">
+        <h3 style="margin-bottom:12px">Recent work</h3>
+        <div class="grid">
+          <div class="tile">Project A</div>
+          <div class="tile">Project B</div>
+          <div class="tile">Project C</div>
+          <div class="tile">Project D</div>
+          <div class="tile">Project E</div>
+          <div class="tile">Project F</div>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:28px">
+        <h3 style="margin-bottom:8px">Get in touch</h3>
+        <div class="card">
+          <form id="contactForm">
+            <input type="text" id="name" placeholder="Your name" required />
+            <input type="email" id="email" placeholder="Your email" required />
+            <textarea id="message" placeholder="How can I help?" required></textarea>
+            <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+              <div class="muted">I'll reply within 48 hours</div>
+              <div style="display:flex;gap:8px">
+                <button type="submit" class="btn primary">Send</button>
+                <button type="button" class="btn ghost" id="clearBtn">Clear</button>
+              </div>
+            </div>
+          </form>
+          <div id="successMsg" style="display:none;margin-top:12px;color:var(--accent);font-weight:700">Thanks — message copied to clipboard (demo).</div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© <span id="year"></span> Skybridge — Built with ❤️</div>
+        <div class="muted">Made with this single-file template</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // small client JS: download, preview, contact form demo, and theme toggle.
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Prepare the file contents (this whole page). For demo we will fetch the current document's outerHTML.
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.addEventListener('click', ()=>{
+      const blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'index.html';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('previewBtn').addEventListener('click', ()=>{
+      const w = window.open();
+      w.document.write(document.documentElement.outerHTML);
+      w.document.close();
+    });
+
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const payload = `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`;
+      // Demo behaviour: copy to clipboard and show success (no server in this static demo)
+      try{
+        await navigator.clipboard.writeText(payload);
+        document.getElementById('successMsg').style.display = 'block';
+        setTimeout(()=>document.getElementById('successMsg').style.display='none', 4000);
+        form.reset();
+      }catch(err){
+        alert('Clipboard not available in this browser.');
+      }
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', ()=>{form.reset();});
+
+    // Optional: simple theme toggle with double-click on logo
+    const logo = document.querySelector('.logo');
+    logo.title = 'Double-click to toggle light theme';
+    logo.addEventListener('dblclick', ()=>{
+      const t = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', t === 'light' ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
